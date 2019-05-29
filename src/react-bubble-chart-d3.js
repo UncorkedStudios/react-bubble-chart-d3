@@ -89,6 +89,8 @@ export default class BubbleChart extends Component {
       graph,
       data,
       bubbleClickFun,
+      bubbleOverFun,
+      bubbleOutFun,
       valueFont,
       labelFont,
     } = this.props;
@@ -102,6 +104,12 @@ export default class BubbleChart extends Component {
     .enter().append("g")
       .attr("class", "node")
       .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
+      .on("mouseover", function(d) {
+        bubbleOverFun(d);
+      })
+      .on("mouseout", function(d) {
+        bubbleOutFun(d);
+      })
       .on("click", function(d) {
         bubbleClickFun(d.label);
     });
@@ -330,5 +338,7 @@ BubbleChart.defaultProps = {
     weight: 'normal',
   },
   bubbleClickFun: (label) => {console.log(`Bubble ${label} is clicked ...`)},
+  bubbleOverFun: (node) => {console.log(`Bubble ${node.label} is mouseover ...`)},
+  bubbleOutFun: (node) => {console.log(`Bubble ${node.label} is mouseout ...`)},
   legendClickFun: (label) => {console.log(`Legend ${label} is clicked ...`)}
 }
