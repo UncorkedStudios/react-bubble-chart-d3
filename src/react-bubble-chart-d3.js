@@ -93,6 +93,7 @@ export default class BubbleChart extends Component {
       bubbleOutFun,
       valueFont,
       labelFont,
+      fancyToolTips,
     } = this.props;
 
     const bubbleChart = d3.select(this.svg).append("g")
@@ -114,6 +115,16 @@ export default class BubbleChart extends Component {
         bubbleClickFun(d.label);
     });
 
+    // Fancy tooltips
+    if (fancyToolTips) {
+      node.attr("data-tip", function(d) { 
+          return `<span>${ d.value }</span><span>${ d.label }</span>`;
+      }).attr("data-html", true);
+    } else {
+      node.append("title")
+        .text(function(d) { return d.label; });
+    }
+    
     node.append("circle")
       .attr("id", function(d) { return d.id; })
       .attr("r", function(d) { return d.r - (d.r * .04); })
@@ -202,9 +213,6 @@ export default class BubbleChart extends Component {
         return -valueFont.size * 0.5;
       }
     });
-
-    node.append("title")
-      .text(function(d) { return d.label; });
   }
 
   renderLegend(width, height, offset, nodes, color) {
