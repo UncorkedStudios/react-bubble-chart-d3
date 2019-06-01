@@ -345,8 +345,12 @@ BubbleChart.defaultProps = {
     color: '#fff',
     weight: 'normal',
   },
-  bubbleClickFun: (label) => {console.log(`Bubble ${label} is clicked ...`)},
-  bubbleOverFun: (node) => {console.log(`Bubble ${node.label} is mouseover ...`)},
-  bubbleOutFun: (node) => {console.log(`Bubble ${node.label} is mouseout ...`)},
-  legendClickFun: (label) => {console.log(`Legend ${label} is clicked ...`)}
+  bubbleClickFun: (label) => {//console.log(`Bubble ${label} is clicked ...`)
+  },
+  bubbleOverFun: (node) => {//console.log(`Bubble ${node.label} is mouseover ...`)
+  },
+  bubbleOutFun: (node) => {//console.log(`Bubble ${node.label} is mouseout ...`)
+  },
+  legendClickFun: (label) => {//console.log(`Legend ${label} is clicked ...`)
+  }
 }
